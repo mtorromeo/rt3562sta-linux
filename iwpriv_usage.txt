@@ -5,7 +5,7 @@ Before reading this document, make sure you already read README.
 
 -------------------------------------------------------------------------------------------------------
 USAGE:
-	iwpriv ra0 commands val
+	iwpriv wlan0 commands val
 
 NOTE:
 	Wireless Extension Private Handlers
@@ -32,7 +32,7 @@ wsc_ssid				{0~z, 1~32 ascii characters}
 						::Set WPS AP SSID
 
 wsc_start				NULL
-						::Trigger RT2860 STA driver to do WPS process
+						::Trigger RT3562 STA driver to do WPS process
 
 wsc_stop				NULL
 						::Stop WPS process
@@ -92,7 +92,7 @@ wsc_ap_band 			{0, 1, 2}
 
 -------------------------------------------------------------------------------------------------------
 USAGE:
-	iwpriv ra0 set [parameters]=[val]
+	iwpriv wlan0 set [parameters]=[val]
 	
 NOTE:
 	Execute one iwpriv/set command simultaneously.
@@ -336,80 +336,80 @@ Examples
 ===================================================================
 -------------------------------------------------------------------------------------------------------
 a> Config STA to link with AP which is OPEN/NONE(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Infra
-	2. iwpriv ra0 set AuthMode=OPEN
-	3. iwpriv ra0 set EncrypType=NONE
-	4. iwpriv ra0 set SSID="AP's SSID"
+	1. iwpriv wlan0 set NetworkType=Infra
+	2. iwpriv wlan0 set AuthMode=OPEN
+	3. iwpriv wlan0 set EncrypType=NONE
+	4. iwpriv wlan0 set SSID="AP's SSID"
 	
 b> Config STA to link with AP which is SHARED/WEP(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Infra
-	2. iwpriv ra0 set AuthMode=SHARED
-	3. iwpriv ra0 set EncrypType=WEP
-	4. iwpriv ra0 set DefaultKeyID=1
-	5. iwpriv ra0 set Key1="AP's wep key"
-	6. iwpriv ra0 set SSID="AP's SSID"
+	1. iwpriv wlan0 set NetworkType=Infra
+	2. iwpriv wlan0 set AuthMode=SHARED
+	3. iwpriv wlan0 set EncrypType=WEP
+	4. iwpriv wlan0 set DefaultKeyID=1
+	5. iwpriv wlan0 set Key1="AP's wep key"
+	6. iwpriv wlan0 set SSID="AP's SSID"
 	
 c> Config STA to link with AP which is WPAPSK/TKIP(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Infra
-	2. iwpriv ra0 set AuthMode=WPAPSK
-	3. iwpriv ra0 set EncrypType=TKIP
-	4. iwpriv ra0 set SSID="AP's SSID"
-	5. iwpriv ra0 set WPAPSK="AP's wpa-preshared key"
-	6. iwpriv ra0 set SSID="AP's SSID"
+	1. iwpriv wlan0 set NetworkType=Infra
+	2. iwpriv wlan0 set AuthMode=WPAPSK
+	3. iwpriv wlan0 set EncrypType=TKIP
+	4. iwpriv wlan0 set SSID="AP's SSID"
+	5. iwpriv wlan0 set WPAPSK="AP's wpa-preshared key"
+	6. iwpriv wlan0 set SSID="AP's SSID"
 	
 d> Config STA to link with AP which is WPAPSK/AES(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Infra
-	2. iwpriv ra0 set AuthMode=WPAPSK
-	3. iwpriv ra0 set EncrypType=AES
-	4. iwpriv ra0 set SSID="AP's SSID"
-	5. iwpriv ra0 set WPAPSK="AP's wpa-preshared key"
-	6. iwpriv ra0 set SSID="AP's SSID"
+	1. iwpriv wlan0 set NetworkType=Infra
+	2. iwpriv wlan0 set AuthMode=WPAPSK
+	3. iwpriv wlan0 set EncrypType=AES
+	4. iwpriv wlan0 set SSID="AP's SSID"
+	5. iwpriv wlan0 set WPAPSK="AP's wpa-preshared key"
+	6. iwpriv wlan0 set SSID="AP's SSID"
 
 e> Config STA to link with AP which is WPA2PSK/TKIP(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Infra
-	2. iwpriv ra0 set AuthMode=WPA2PSK
-	3. iwpriv ra0 set EncrypType=TKIP
-	4. iwpriv ra0 set SSID="AP's SSID"
-	5. iwpriv ra0 set WPAPSK=12345678
-	6. iwpriv ra0 set SSID="AP's SSID"
+	1. iwpriv wlan0 set NetworkType=Infra
+	2. iwpriv wlan0 set AuthMode=WPA2PSK
+	3. iwpriv wlan0 set EncrypType=TKIP
+	4. iwpriv wlan0 set SSID="AP's SSID"
+	5. iwpriv wlan0 set WPAPSK=12345678
+	6. iwpriv wlan0 set SSID="AP's SSID"
 	
 f> Config STA to create/link as adhoc mode, which is OPEN/NONE(Authentication/Encryption)
-	1. iwpriv ra0 set NetworkType=Adhoc
-	2. iwpriv ra0 set AuthMode=OPEN
-	3. iwpriv ra0 set EncrypType=NONE
-	4. iwpriv ra0 set SSID="Adhoc's SSID"
+	1. iwpriv wlan0 set NetworkType=Adhoc
+	2. iwpriv wlan0 set AuthMode=OPEN
+	3. iwpriv wlan0 set EncrypType=NONE
+	4. iwpriv wlan0 set SSID="Adhoc's SSID"
 
 g>  Config STA to create/link as adhoc mode, which is WPANONE/TKIP(Authentication/Encryption)
-    1. iwpriv ra0 set NetworkType=Adhoc
-	2. iwpriv ra0 set AuthMode=WPANONE
-	3. iwpriv ra0 set EncrypType=TKIP
-	4. iwpriv ra0 set SSID="AP's SSID"
-	5. iwpriv ra0 set WPAPSK=12345678
-	6. iwpriv ra0 set SSID="AP's SSID"
+    1. iwpriv wlan0 set NetworkType=Adhoc
+	2. iwpriv wlan0 set AuthMode=WPANONE
+	3. iwpriv wlan0 set EncrypType=TKIP
+	4. iwpriv wlan0 set SSID="AP's SSID"
+	5. iwpriv wlan0 set WPAPSK=12345678
+	6. iwpriv wlan0 set SSID="AP's SSID"
   
 h> Get site survey 
-	usage: iwpriv ra0 get_site_survey
+	usage: iwpriv wlan0 get_site_survey
 		
 i> Get Statistics 
-	usage: iwpriv ra0 stat						; read statistic counter
-		   iwpriv ra0 set ResetCounter=0		; reset statistic counter
+	usage: iwpriv wlan0 stat						; read statistic counter
+		   iwpriv wlan0 set ResetCounter=0		; reset statistic counter
 
 j> Link with an AP which is the largest strength   ; set ANY SSID (ssidLen=0)
-   usage: iwconfig ra0 essid ""                 
+   usage: iwconfig wlan0 essid ""                 
    or
-   usage: iwpriv ra0 set SSID=""
+   usage: iwpriv wlan0 set SSID=""
 
 k> Config STA to link as dongle mode with STA own MAC
-	usage: iwpriv ra0 set EthConvertMode=dongle
+	usage: iwpriv wlan0 set EthConvertMode=dongle
 
 l> Config STA to link as clone mode
-	usage: iwpriv ra0 set EthConvertMode=clone
-		   iwpriv ra0 set EthCloneMac="Desired MAC"		;; 00:00:00:00:00:00 means using STA own MAC
+	usage: iwpriv wlan0 set EthConvertMode=clone
+		   iwpriv wlan0 set EthCloneMac="Desired MAC"		;; 00:00:00:00:00:00 means using STA own MAC
 														;; FF:FF:FF:FF:FF:FF means using source MAC of first packet coming from wired device
 
 m> Config STA to link as hybrid(dongle+clone) mode
-	usage: iwpriv ra0 set EthConvertMode=hybrid
-		   iwpriv ra0 set EthCloneMac="Desired MAC"		;; 00:00:00:00:00:00 means using STA own MAC
+	usage: iwpriv wlan0 set EthConvertMode=hybrid
+		   iwpriv wlan0 set EthCloneMac="Desired MAC"		;; 00:00:00:00:00:00 means using STA own MAC
 														;; FF:FF:FF:FF:FF:FF means using source MAC of first packet coming from wired device
 
 ===================================================================
@@ -419,7 +419,7 @@ iwlist
 This is detailed explanation of each parameters for iwlist.
 
 -------------------------------------------------------------------------------------------------------
-iwlist ra0 scanning		; list the results after scanning(manual rescan)
+iwlist wlan0 scanning		; list the results after scanning(manual rescan)
 
 
 
@@ -430,18 +430,18 @@ iwconfig
 The following are our support in standard configuration - iwconfig
 
 -------------------------------------------------------------------------------------------------------
-iwconfig ra0 essid {NN|on|off}			; set essid
-iwconfig ra0 mode {managed|ad-hoc|...}  ; set wireless mode
->> rt2860sta driver support monitor mode with linux kernel > 2.4.20.
+iwconfig wlan0 essid {NN|on|off}			; set essid
+iwconfig wlan0 mode {managed|ad-hoc|...}  ; set wireless mode
+>> rt3562sta driver support monitor mode with linux kernel > 2.4.20.
 >> Note: For using monitor mode => if mesh interface is ON, please down the mesh interface first.
-iwconfig ra0 freq N.NNNN[k|M|G]]		; set frequency
-iwconfig ra0 channel N					; set channel
-iwconfig ra0 ap {N|off|auto}			; set AP address
-iwconfig ra0 nick N						; set nickname
-iwconfig ra0 rate {N|auto|fixed}     	; set rate (only support legacy rate setting)
-iwconfig ra0 rts {N|auto|fixed|off}		; set RTS threshold
-iwconfig ra0 frag {N|auto|fixed|off}	; set Fragment threshold
-iwconfig ra0 enc {NNNN-NNNN|off}		; set encryption type
-iwconfig ra0 power {period N|timeout N}	; set power management modes
+iwconfig wlan0 freq N.NNNN[k|M|G]]		; set frequency
+iwconfig wlan0 channel N					; set channel
+iwconfig wlan0 ap {N|off|auto}			; set AP address
+iwconfig wlan0 nick N						; set nickname
+iwconfig wlan0 rate {N|auto|fixed}     	; set rate (only support legacy rate setting)
+iwconfig wlan0 rts {N|auto|fixed|off}		; set RTS threshold
+iwconfig wlan0 frag {N|auto|fixed|off}	; set Fragment threshold
+iwconfig wlan0 enc {NNNN-NNNN|off}		; set encryption type
+iwconfig wlan0 power {period N|timeout N}	; set power management modes
 
 *** Wireless extension usage please refer to man page of 'iwconfig', 'iwlist' and 'iwpriv'. ***
