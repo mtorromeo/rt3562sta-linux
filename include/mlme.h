@@ -227,7 +227,7 @@ if (((__pEntry)) != NULL) \
 
 #ifdef TXBF_SUPPORT
 //#define MRQ_FORCE_TX//regardless the capability of the station
-#define ETXBF_EN_COND		0 //this value can be set by iwpriv ra0 set ETxBfEnCond=?
+#define ETXBF_EN_COND		0 //this value can be set by iwpriv wlan0 set ETxBfEnCond=?
 // 0:no etxbf, 
 // 1:etxbf update periodically, 
 // 2:etxbf updated if mcs changes in RateSwitchingAdapt() or APQuickResponeForRateUpExecAdapt(). 

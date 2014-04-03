@@ -61,6 +61,8 @@ ifeq ($(TARGET),THREADX)
 MAKE = gmake
 endif
 
+ifeq ($(LINUX_SRC),)
+
 ifeq ($(PLATFORM),5VT)
 LINUX_SRC = /project/stable/5vt/ralink-2860-sdk/linux-2.6.17
 CROSS_COMPILE = /opt/crosstool/uClibc_v5te_le_gcc_4_1_1/bin/arm-linux-
@@ -237,6 +239,8 @@ endif
 ifeq ($(PLATFORM),MVL5)
 LINUX_SRC = /home2/charlestu/AP-VT3426/linux-2.6.18
 CROSS_COMPILE = /opt/montavista/pro/devkit/arm/v5t_le_mvl5/bin/arm_v5t_le-
+endif
+
 endif
 
 export OSABL RT28xx_DIR RT28xx_MODE LINUX_SRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE CHIPSET RTMP_SRC_DIR LINUX_SRC_MODULE TARGET

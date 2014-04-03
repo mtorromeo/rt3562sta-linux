@@ -2162,7 +2162,7 @@ PSTRING GetAuthMode(CHAR auth)
     Note:
         Usage:
         		1.) UI needs to wait 4 seconds after issue a site survey command
-        		2.) iwpriv ra0 get_site_survey
+        		2.) iwpriv wlan0 get_site_survey
         		3.) UI needs to prepare at least 4096bytes to get the results
     ==========================================================================
 */

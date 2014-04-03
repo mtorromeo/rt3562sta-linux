@@ -626,7 +626,7 @@ BOOLEAN  RTMPFreeTXDUponTxDmaDone(
 
 			Can not take off the NICUpdateFifoStaCounters(); Or the
 			FIFO overflow rate will be high, i.e. > 3%
-			(see the rate by "iwpriv ra0 show stainfo")
+			(see the rate by "iwpriv wlan0 show stainfo")
 
 			Based on different platform, try to find the best value to
 			replace '4' here (overflow rate target is about 0%).

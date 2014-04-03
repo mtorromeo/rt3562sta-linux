@@ -415,8 +415,8 @@
 #define HW_RESERVED_WCID	255
 // If the MAX_MBSSID_NUM is larger than 6, 
 // it shall reserve some WCID space(wcid 222~253) for beacon frames. 
-// -	these wcid 238~253 are reserved for beacon#6(ra6).
-// -	these wcid 222~237 are reserved for beacon#7(ra7).
+// -	these wcid 238~253 are reserved for beacon#6(wlan6).
+// -	these wcid 222~237 are reserved for beacon#7(wlan7).
 #elif defined(MAX_MBSSID_NUM) && (MAX_MBSSID_NUM == 8)
 #define HW_RESERVED_WCID	222
 #elif defined(MAX_MBSSID_NUM) && (MAX_MBSSID_NUM == 7)

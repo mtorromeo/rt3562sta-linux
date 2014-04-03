@@ -150,7 +150,7 @@ static int rt2860_suspend(
 	{
 		GET_PAD_FROM_NET_DEV(pAd, net_dev);
 
-		/* we can not use IFF_UP because ra0 down but ra1 up */
+		/* we can not use IFF_UP because wlan0 down but wlan1 up */
 		/* and 1 suspend/resume function for 1 module, not for each interface */
 		/* so Linux will call suspend/resume function once */
 		if (VIRTUAL_IF_NUM(pAd) > 0)
@@ -236,7 +236,7 @@ static int rt2860_resume(
 
 	if (pAd != NULL)
 	{
-		/* we can not use IFF_UP because ra0 down but ra1 up */
+		/* we can not use IFF_UP because wlan0 down but wlan1 up */
 		/* and 1 suspend/resume function for 1 module, not for each interface */
 		/* so Linux will call suspend/resume function once */
 		if (VIRTUAL_IF_NUM(pAd) > 0)
