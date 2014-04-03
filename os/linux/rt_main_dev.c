@@ -1247,7 +1247,7 @@ NDIS_STATUS WriteDatThread(
 	RTMP_OS_TASK *pTask;
 
 	if (pAd->bWriteDat == FALSE)
-		return;
+		return 0;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("-->WriteDatThreadInit()\n"));
 
