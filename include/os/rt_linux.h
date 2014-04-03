@@ -111,10 +111,10 @@
 
 #ifdef CONFIG_STA_SUPPORT
 #ifdef RTMP_MAC_PCI
-#define STA_PROFILE_PATH			"/etc/Wireless/RT2860STA/RT2860STA.dat"
+#define STA_PROFILE_PATH			"/etc/Wireless/RT3562STA/RT3562STA.dat"
 #define STA_DRIVER_VERSION			"2.4.1.1"
 #ifdef MULTIPLE_CARD_SUPPORT
-#define CARD_INFO_PATH			"/etc/Wireless/RT2860STA/RT2860STACard.dat"
+#define CARD_INFO_PATH			"/etc/Wireless/RT3562STA/RT3562STACard.dat"
 #endif // MULTIPLE_CARD_SUPPORT //
 #endif // RTMP_MAC_PCI //
 
