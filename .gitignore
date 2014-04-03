@@ -1,8 +1,13 @@
+tools/bin2h
+os/linux/Makefile
+
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
+*.cmd
+*.order
 
 # Libraries
 *.lib
