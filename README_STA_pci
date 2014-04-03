@@ -65,11 +65,11 @@ Build Instructions:
 	** Build for being controlled by NetworkManager or wpa_supplicant wext functions
 	   Please set 'HAS_WPA_SUPPLICANT=y' and 'HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=y'.
 	   => #>cd wpa_supplicant-x.x
-	   => #>./wpa_supplicant -Dwext -ira0 -c wpa_supplicant.conf -d
+	   => #>./wpa_supplicant -Dwext -iwlan0 -c wpa_supplicant.conf -d
 	** Build for being controlled by WpaSupplicant with Ralink Driver
 	   Please set 'HAS_WPA_SUPPLICANT=y' and 'HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=n'.
 	   => #>cd wpa_supplicant-0.5.7
-	   => #>./wpa_supplicant -Dralink -ira0 -c wpa_supplicant.conf -d
+	   => #>./wpa_supplicant -Dralink -iwlan0 -c wpa_supplicant.conf -d
 
 4> $make			
 	# compile driver source code
@@ -81,14 +81,14 @@ Build Instructions:
 6> load driver
     #[kernel 2.4]
     #    $/sbin/insmod rt2860sta.o
-    #    $/sbin/ifconfig ra0 inet YOUR_IP up
+    #    $/sbin/ifconfig wlan0 inet YOUR_IP up
         
     #[kernel 2.6]
     #    $/sbin/insmod rt2860sta.ko
-    #    $/sbin/ifconfig ra0 inet YOUR_IP up
+    #    $/sbin/ifconfig wlan0 inet YOUR_IP up
 
 7> unload driver    
-    $/sbin/ifconfig ra0 down
+    $/sbin/ifconfig wlan0 down
 	$/sbin/rmmod rt2860sta
 	
 =======================================================================
@@ -483,14 +483,14 @@ syntax is 'Param'='Value' and describes below.
 MORE INFORMATION
 =================================================================================
 If you want for rt2860 driver to auto-load at boot time:
-A) choose ra0 for first RT2860 WLAN card, ra1 for second RT2860 WLAN card, etc.
+A) choose wlan0 for first RT2860 WLAN card, ra1 for second RT2860 WLAN card, etc.
    
-B) create(edit) 'ifcfg-ra0' file in /etc/sysconfig/network-scripts/,      
+B) create(edit) 'ifcfg-wlan0' file in /etc/sysconfig/network-scripts/,      
    edit( or add the line) in /etc/modules.conf:
-       alias ra0 rt2860sta
+       alias wlan0 rt2860sta
    
-C) edit(create) the file /etc/sysconfig/network-scripts/ifcfg-ra0  
-   DEVICE='ra0'
+C) edit(create) the file /etc/sysconfig/network-scripts/ifcfg-wlan0  
+   DEVICE='wlan0'
    ONBOOT='yes'     
 
 

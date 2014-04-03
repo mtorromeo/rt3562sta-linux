@@ -723,7 +723,7 @@ rt2860_interrupt(int irq, void *dev_instance, struct pt_regs *regs)
 	/* Note 03312008: we can not return here before
 		RTMP_IO_READ32(pAd, INT_SOURCE_CSR, &IntSource.word);
 		RTMP_IO_WRITE32(pAd, INT_SOURCE_CSR, IntSource.word);
-		Or kernel will panic after ifconfig ra0 down sometimes */
+		Or kernel will panic after ifconfig wlan0 down sometimes */
 
 
 	//

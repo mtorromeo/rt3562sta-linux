@@ -1111,8 +1111,8 @@ Return Value:
 Note:
 	For iw utility: connect
 
-	You must use "iw ra0 connect xxx", then "iw ra0 disconnect";
-	You can not use "iw ra0 connect xxx" twice without disconnect;
+	You must use "iw wlan0 connect xxx", then "iw wlan0 disconnect";
+	You can not use "iw wlan0 connect xxx" twice without disconnect;
 	Or you will suffer "command failed: Operation already in progress (-114)".
 
 	You must support add_key and set_default_key function;

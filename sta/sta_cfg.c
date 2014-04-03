@@ -1314,7 +1314,7 @@ INT Set_AutoRoaming_Proc(
 
     Note:
         Usage: 
-               1.) iwpriv ra0 set site_survey
+               1.) iwpriv wlan0 set site_survey
     ==========================================================================
 */
 INT Set_SiteSurvey_Proc(

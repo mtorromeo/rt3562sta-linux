@@ -5619,8 +5619,8 @@ INT rt28xx_sta_ioctl(
 
     Note:
         Usage: 
-               1.) iwpriv ra0 mac 0        ==> read MAC where Addr=0x0
-               2.) iwpriv ra0 mac 0=12     ==> write MAC where Addr=0x0, value=12
+               1.) iwpriv wlan0 mac 0        ==> read MAC where Addr=0x0
+               2.) iwpriv wlan0 mac 0=12     ==> write MAC where Addr=0x0, value=12
     ==========================================================================
 */
 VOID RTMPIoctlMAC(
@@ -5856,8 +5856,8 @@ next:
 
     Note:
         Usage: 
-               1.) iwpriv ra0 e2p 0     	==> read E2PROM where Addr=0x0
-               2.) iwpriv ra0 e2p 0=1234    ==> write E2PROM where Addr=0x0, value=1234
+               1.) iwpriv wlan0 e2p 0     	==> read E2PROM where Addr=0x0
+               2.) iwpriv wlan0 e2p 0=1234    ==> write E2PROM where Addr=0x0, value=1234
     ==========================================================================
 */
 VOID RTMPIoctlE2PROM(
@@ -6057,9 +6057,9 @@ Arguments:
 
     Note:
         Usage: 
-               1.) iwpriv ra0 rf                ==> read all RF registers
-               2.) iwpriv ra0 rf 1              ==> read RF where RegID=1
-               3.) iwpriv ra0 rf 1=10		    ==> write RF R1=0x10
+               1.) iwpriv wlan0 rf                ==> read all RF registers
+               2.) iwpriv wlan0 rf 1              ==> read RF where RegID=1
+               3.) iwpriv wlan0 rf 1=10		    ==> write RF R1=0x10
     ==========================================================================
 */
 VOID RTMPIoctlRF(

@@ -7,7 +7,7 @@ It may damage hardware.
 
 ===================================================================================================
 Usage:
-	iwpriv ra0 [act] [parameters]=[val]
+	iwpriv wlan0 [act] [parameters]=[val]
 
 
 where
@@ -163,102 +163,102 @@ where
 	Value:
 		1
 	E.g.
-		iwpriv ra0 set ATELDE2P=1
+		iwpriv wlan0 set ATELDE2P=1
 
 1.26 ATERE2P
 		Display all EEPROM content.
 	Value:
 		1
 	E.g.
-		iwpriv ra0 set ATERE2P=1
+		iwpriv wlan0 set ATERE2P=1
 
 ===================================================================================================
 2. Examples:
 =========
 
 2.1 Check EVM & Power
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATEDA=00:11:22:33:44:55
-		iwpriv ra0 set ATESA=00:aa:bb:cc:dd:ee
-		iwpriv ra0 set ATEBSSID=00:11:22:33:44:55
-		iwpriv ra0 set ATECHANNEL=1			; set Channel
-		iwpriv ra0 set ATETXMODE=1			; set TX-Mode.
-		iwpriv ra0 set ATETXMCS=7			; set MCS type.
-		iwpriv ra0 set ATETXBW=0			; set Bandwidth
-		iwpriv ra0 set ATETXGI=0			; set Long GI.
-		iwpriv ra0 set ATETXLEN=1024		        ; set packet length.
-		iwpriv ra0 set ATETXPOW0=18
-		iwpriv ra0 set ATETXPOW1=18
-		iwpriv ra0 set ATETXCNT=100000
-		iwpriv ra0 set ATE=TXFRAME
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATEDA=00:11:22:33:44:55
+		iwpriv wlan0 set ATESA=00:aa:bb:cc:dd:ee
+		iwpriv wlan0 set ATEBSSID=00:11:22:33:44:55
+		iwpriv wlan0 set ATECHANNEL=1			; set Channel
+		iwpriv wlan0 set ATETXMODE=1			; set TX-Mode.
+		iwpriv wlan0 set ATETXMCS=7			; set MCS type.
+		iwpriv wlan0 set ATETXBW=0			; set Bandwidth
+		iwpriv wlan0 set ATETXGI=0			; set Long GI.
+		iwpriv wlan0 set ATETXLEN=1024		        ; set packet length.
+		iwpriv wlan0 set ATETXPOW0=18
+		iwpriv wlan0 set ATETXPOW1=18
+		iwpriv wlan0 set ATETXCNT=100000
+		iwpriv wlan0 set ATE=TXFRAME
 		¡K
-		iwpriv ra0 set ATETXPOW0=19
+		iwpriv wlan0 set ATETXPOW0=19
 		¡K
-		iwpriv ra0 set ATETXPOW0=20
+		iwpriv wlan0 set ATETXPOW0=20
 		¡K
-		iwpriv ra0 set ATE=ATESTART
+		iwpriv wlan0 set ATE=ATESTART
 
 2.2 Check Carrier
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATECHANNEL=1			; set Channel
-		iwpriv ra0 set ATETXMODE=1			; set TX-Mode.
-		iwpriv ra0 set ATETXMCS=7			; set MCS type.
-		iwpriv ra0 set ATETXBW=0			; set Bandwidth
-		iwpriv ra0 set ATETXCNT=200			; Tx frame count(decmial)
-		iwpriv ra0 set ATE=TXFRAME			; Start Tx Frame(inform BBP to change, modulation mode)
-		iwpriv ra0 set ATE=TXCARR			; Start Tx carrier, Measure carrier with instrument
-		iwpriv ra0 set ATETXPOW0=05
-		iwpriv ra0 set ATETXPOW1=05
-		iwpriv ra0 set ATETXFREQOFFSET=19
-		iwpriv ra0 set ATE=ATESTART
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATECHANNEL=1			; set Channel
+		iwpriv wlan0 set ATETXMODE=1			; set TX-Mode.
+		iwpriv wlan0 set ATETXMCS=7			; set MCS type.
+		iwpriv wlan0 set ATETXBW=0			; set Bandwidth
+		iwpriv wlan0 set ATETXCNT=200			; Tx frame count(decmial)
+		iwpriv wlan0 set ATE=TXFRAME			; Start Tx Frame(inform BBP to change, modulation mode)
+		iwpriv wlan0 set ATE=TXCARR			; Start Tx carrier, Measure carrier with instrument
+		iwpriv wlan0 set ATETXPOW0=05
+		iwpriv wlan0 set ATETXPOW1=05
+		iwpriv wlan0 set ATETXFREQOFFSET=19
+		iwpriv wlan0 set ATE=ATESTART
 
 2.3 Check specturm mask
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATECHANNEL=1			; set Channel
-		iwpriv ra0 set ATETXMODE=1			; set TX-Mode.
-		iwpriv ra0 set ATETXMCS=7			; set MCS type.
-		iwpriv ra0 set ATETXBW=0			; set Bandwidth
-		iwpriv ra0 set ATETXCNT=200			; Tx frame count(decmial)
-		iwpriv ra0 set ATE=TXFRAME			; Start Tx Frame(inform BBP to change, modulation mode)
-		iwpriv ra0 set ATE=TXCONT			; Start continuous TX, Measure specturm mask with instrument
-		iwpriv ra0 set ATETXPOW0=5
-		iwpriv ra0 set ATETXPOW1=5
-		iwpriv ra0 set ATE=ATESTART
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATECHANNEL=1			; set Channel
+		iwpriv wlan0 set ATETXMODE=1			; set TX-Mode.
+		iwpriv wlan0 set ATETXMCS=7			; set MCS type.
+		iwpriv wlan0 set ATETXBW=0			; set Bandwidth
+		iwpriv wlan0 set ATETXCNT=200			; Tx frame count(decmial)
+		iwpriv wlan0 set ATE=TXFRAME			; Start Tx Frame(inform BBP to change, modulation mode)
+		iwpriv wlan0 set ATE=TXCONT			; Start continuous TX, Measure specturm mask with instrument
+		iwpriv wlan0 set ATETXPOW0=5
+		iwpriv wlan0 set ATETXPOW1=5
+		iwpriv wlan0 set ATE=ATESTART
 
 2.4 Frequency offset tuning
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATECHANNEL=1			; set Channel
-		iwpriv ra0 set ATETXMODE=1			; set TX-Mode.
-		iwpriv ra0 set ATETXMCS=7			; set MCS type.
-		iwpriv ra0 set ATETXCNT=200			; Tx frame count(decmial)
-		iwpriv ra0 set ATETXFREQOFFSET=0	        ; Set frequency offset 0(decimal)
-		iwpriv ra0 set ATE=TXFRAME			; Start Tx Frame
-		iwpriv ra0 set ATE=TXCARR			; Start Tx carrier, Measure carrier frequency with instrument
-		iwpriv ra0 set ATETXFREQOFFSET=10	        ; Dynamic turning frequency offset, 10(decimal)
-		iwpriv ra0 set ATETXFREQOFFSET=20	        ; Dynamic turning frequency offset, 20(decimal)
-		iwpriv ra0 set ATE=ATESTART			; Stop, Store the tuning result to EEPROM
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATECHANNEL=1			; set Channel
+		iwpriv wlan0 set ATETXMODE=1			; set TX-Mode.
+		iwpriv wlan0 set ATETXMCS=7			; set MCS type.
+		iwpriv wlan0 set ATETXCNT=200			; Tx frame count(decmial)
+		iwpriv wlan0 set ATETXFREQOFFSET=0	        ; Set frequency offset 0(decimal)
+		iwpriv wlan0 set ATE=TXFRAME			; Start Tx Frame
+		iwpriv wlan0 set ATE=TXCARR			; Start Tx carrier, Measure carrier frequency with instrument
+		iwpriv wlan0 set ATETXFREQOFFSET=10	        ; Dynamic turning frequency offset, 10(decimal)
+		iwpriv wlan0 set ATETXFREQOFFSET=20	        ; Dynamic turning frequency offset, 20(decimal)
+		iwpriv wlan0 set ATE=ATESTART			; Stop, Store the tuning result to EEPROM
 
 2.5 Rx
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATECHANNEL=1			; set Channel
-		iwpriv ra0 set ResetCounter=1		        ; Reset statistic counter
-		iwpriv ra0 set ATETXFREQOFFSET=value            ;To use the ¡§value¡¨(decimal) you got in tx calibration
-		iwpriv ra0 set ATETXMODE=1			; set TX-Mode.
-		iwpriv ra0 set ATETXMCS=7			; set MCS type.
-		iwpriv ra0 set ATETXBW=0			; set Bandwidth
-		iwpriv ra0 set ATE=RXFRAME			; Start Rx,
-		iwpriv ra0 set ATERXFER=1			; show RxCnt and RSSI/per-antenna, Transmit test packets
-		iwpriv ra0 set ATE=ATESTART			; Stop
-		iwpriv ra0 stat 					; get statistics counter
-		iwpriv ra0 set ATERXFER=1
-		iwpriv ra0 set ATERXANT=1
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATECHANNEL=1			; set Channel
+		iwpriv wlan0 set ResetCounter=1		        ; Reset statistic counter
+		iwpriv wlan0 set ATETXFREQOFFSET=value            ;To use the ¡§value¡¨(decimal) you got in tx calibration
+		iwpriv wlan0 set ATETXMODE=1			; set TX-Mode.
+		iwpriv wlan0 set ATETXMCS=7			; set MCS type.
+		iwpriv wlan0 set ATETXBW=0			; set Bandwidth
+		iwpriv wlan0 set ATE=RXFRAME			; Start Rx,
+		iwpriv wlan0 set ATERXFER=1			; show RxCnt and RSSI/per-antenna, Transmit test packets
+		iwpriv wlan0 set ATE=ATESTART			; Stop
+		iwpriv wlan0 stat 					; get statistics counter
+		iwpriv wlan0 set ATERXFER=1
+		iwpriv wlan0 set ATERXANT=1
 		
-		iwpriv ra0 set ATE=ATESTART
-		iwpriv ra0 set ATERXANT=0
-		iwpriv ra0 set ATE=RXFRAME
+		iwpriv wlan0 set ATE=ATESTART
+		iwpriv wlan0 set ATERXANT=0
+		iwpriv wlan0 set ATE=RXFRAME
 
 2.6 Show all ate parameters
-		iwpriv ra0 set ATESHOW=1
+		iwpriv wlan0 set ATESHOW=1
 
 			Mode=4
 			TxPower0=0
@@ -279,7 +279,7 @@ where
 			RFFreqOffset=0
 
 2.7 Online help
-		iwpriv ra0 set ATEHELP=1
+		iwpriv wlan0 set ATEHELP=1
 		
 			ATE=ATESTART, ATESTOP, TXCONT, TXCARR, TXFRAME, RXFRAME
 			ATEDA
@@ -309,18 +309,18 @@ where
 			ATEHELP, online help.
 
 2.8 Display Rx Packet Count and RSSI
-		iwpriv ra0 set ATERXANT=0		==> Enable All Three Rx Antennas
-		iwpriv ra0 set ATERXFER=1		==> Enable Rx Frame Error Rate: RxCnt/RxTotal
-		iwpriv ra0 set ATE=RXFRAME	        ==> Start Rx
+		iwpriv wlan0 set ATERXANT=0		==> Enable All Three Rx Antennas
+		iwpriv wlan0 set ATERXFER=1		==> Enable Rx Frame Error Rate: RxCnt/RxTotal
+		iwpriv wlan0 set ATE=RXFRAME	        ==> Start Rx
 			MlmePeriodicExec: Rx packet cnt = 2/4
 			MlmePeriodicExec: Rx AvgRssi0=-88, AvgRssi1=-80, AvgRssi2=-91
 			MlmePeriodicExec: Rx packet cnt = 2/6
 			MlmePeriodicExec: Rx AvgRssi0=-86, AvgRssi1=-77, AvgRssi2=-89¡K
 			¡K
 
-		iwpriv ra0 set ATERXANT=1		==> Enable Three Rx Antenna-1
-		iwpriv ra0 set ATERXFER=1		==> Enable Rx Frame Error Rate: RxCnt/RxTotal
-		iwpriv ra0 set ATE=RXFRAME	        ==> Start Rx
+		iwpriv wlan0 set ATERXANT=1		==> Enable Three Rx Antenna-1
+		iwpriv wlan0 set ATERXFER=1		==> Enable Rx Frame Error Rate: RxCnt/RxTotal
+		iwpriv wlan0 set ATE=RXFRAME	        ==> Start Rx
 			MlmePeriodicExec: Rx packet cnt = 0/7
 			MlmePeriodicExec: Rx AvgRssi=-87
 			MlmePeriodicExec: Rx packet cnt = 7/14
@@ -334,7 +334,7 @@ where
 ==================
 
 =====================================
-3.1 iwpriv ra0 bbp [parameters]=[Value]
+3.1 iwpriv wlan0 bbp [parameters]=[Value]
 		Read/Write BBP registers by ID number.
 	BBPID
 
@@ -350,7 +350,7 @@ where
 		00 ~FF			; hexdecimal, 8-bit
 
 =====================================
-3.2 iwpriv ra0 mac [parameters]=[val]
+3.2 iwpriv wlan0 mac [parameters]=[val]
 		Read/Write MAC registers by offset.
 	MAC_OFFSET
 
@@ -366,7 +366,7 @@ where
 		0000 ~FFFF		; hexdecimal, 32-bit
 
 =====================================
-3.3 iwpriv ra0 e2p [parameters]=[val]
+3.3 iwpriv wlan0 e2p [parameters]=[val]
 		Read/Write EEPROM content by address.
 	EEP_ADDR
 
@@ -385,16 +385,16 @@ where
 3.4 Example
 
 3.4.1 Hardware access
-		iwpriv ra0 bbp 0				# read BBP register 0
-		iwpriv ra0 bbp 0=12				# write BBP register 0 as 0x12
-		iwpriv ra0 mac 0				# read MAC register 0
-		iwpriv ra0 mac 0=1234abcd		        # write MAC register 0 as 0x1234abcd
-		iwpriv ra0 e2p 0				# read E2PROM 0
-		iwpriv ra0 e2p c=12ab			        # write E2PROM 0xc as 0x12ab
+		iwpriv wlan0 bbp 0				# read BBP register 0
+		iwpriv wlan0 bbp 0=12				# write BBP register 0 as 0x12
+		iwpriv wlan0 mac 0				# read MAC register 0
+		iwpriv wlan0 mac 0=1234abcd		        # write MAC register 0 as 0x1234abcd
+		iwpriv wlan0 e2p 0				# read E2PROM 0
+		iwpriv wlan0 e2p c=12ab			        # write E2PROM 0xc as 0x12ab
 
 3.4.2 Statistic counter operation
-		iwpriv ra0 stat					# read statistic counter
-		iwpriv ra0 set ResetCounter=0	                # reset statistic counter
+		iwpriv wlan0 stat					# read statistic counter
+		iwpriv wlan0 set ResetCounter=0	                # reset statistic counter
 
 	Suggestion:
 		1. To turn on ATE functionality, you have to add compile flag "RALINK_ATE" to Makefile
@@ -429,16 +429,16 @@ RT28xx linux driver will leave ATE mode either ated is killed or Windows GUI is 
 5. If you have no bridge interface, please give an IP address to the ethernet interface.
    (for example : '$ated -beth0')
 6. After the interfaces have entered forwarding states, manually start ated, type '$ated -bbrX -iraX'.
-7. If your WLAN interface and Bridge interface is "ra0" and "br0" respectively, just type $ated.
+7. If your WLAN interface and Bridge interface is "wlan0" and "br0" respectively, just type $ated.
    (For further usage of options, type $ated -h)
 8. In the Windows host, run RT28xxQA_ATE.exe or ./RT2880_ATE/RaUI.exe.
 9. Select the wired network adapter, then press OK and wait for a moment.
 10.If the Windows host cannot tolerate such a broadcast storm from ated,
-   please run ated with option -u.(for example : '$ated -ira1 -u')
+   please run ated with option -u.(for example : '$ated -iwlan1 -u')
 11.If your target platform concerns its network security, please run RT28xxQA_unicast.exe instead of RT28xxQA_ATE.exe.
 
 Note : 
-a. The names of WLAN interface(default is "ra0") and Bridge interface(default is "br0") must be specified manually(for example : '$ated -bbr1 -ira2') if your WLAN interface or Bridge interface is not "ra0" or "br0" respectively !
+a. The names of WLAN interface(default is "wlan0") and Bridge interface(default is "br0") must be specified manually(for example : '$ated -bbr1 -iwlan2') if your WLAN interface or Bridge interface is not "wlan0" or "br0" respectively !
 b. Please make sure no other RaUI is running before you excute ./RT2880_ATE/RaUI.exe.
 
 
