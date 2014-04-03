@@ -8,13 +8,13 @@
 =======================================================================
 ModelName:
 ===========
-RT2860 Wireless Lan Linux Driver
+RT3562 Wireless Lan Linux Driver
 
 
 =======================================================================
 Driver lName:
 =============
-rt2860.o/rt2860.ko
+rt3562.o/rt3562.ko
 
 
 =======================================================================
@@ -27,7 +27,7 @@ Tested in Redhat 7.3 or later.
 =======================================================================
 Description:
 =============
-This is a linux device driver for Ralink RT2860 ABGN WLAN Card.
+This is a linux device driver for Ralink RT3562 ABGN WLAN Card.
 
 
 =======================================================================
@@ -50,8 +50,8 @@ Features:
 Build Instructions:  
 ====================
 
-1> $tar -xvzf DPB_RT2860_Linux_STA_x.x.x.x.tgz
-    go to "./DPB_RT2860_Linux_STA_x.x.x.x" directory.
+1> $tar -xvzf DPB_RT3562_Linux_STA_x.x.x.x.tgz
+    go to "./DPB_RT3562_Linux_STA_x.x.x.x" directory.
     
 2> In Makefile
 	 set the "MODE = STA" in Makefile and chose the TARGET to Linux by set "TARGET = LINUX"
@@ -76,34 +76,34 @@ Build Instructions:
 	# To fix "error: too few arguments to function ．iwe_stream_add_event"
 	  => $patch -i os/linux/sta_ioctl.c.patch os/linux/sta_ioctl.c
 
-5> $cp RT2860STA.dat  /etc/Wireless/RT2860STA/RT2860STA.dat       
+5> $cp RT3562STA.dat  /etc/Wireless/RT3562STA/RT3562STA.dat       
     
 6> load driver
     #[kernel 2.4]
-    #    $/sbin/insmod rt2860sta.o
+    #    $/sbin/insmod rt3562sta.o
     #    $/sbin/ifconfig wlan0 inet YOUR_IP up
         
     #[kernel 2.6]
-    #    $/sbin/insmod rt2860sta.ko
+    #    $/sbin/insmod rt3562sta.ko
     #    $/sbin/ifconfig wlan0 inet YOUR_IP up
 
 7> unload driver    
     $/sbin/ifconfig wlan0 down
-	$/sbin/rmmod rt2860sta
+	$/sbin/rmmod rt3562sta
 	
 =======================================================================
 CONFIGURATION:  
 ====================
-RT2860 driver can be configured via following interfaces, 
+RT3562 driver can be configured via following interfaces, 
 i.e. (i)"iwconfig" command, (ii)"iwpriv" command, (iii) configuration file
 
 i)  iwconfig comes with kernel.  
 ii) iwpriv usage, please refer to file "iwpriv_usage.txt" for details.
-iii)modify configuration file "RT2860STA.dat" in /etc/Wireless/RT2860STA/RT2860STA.dat.
+iii)modify configuration file "RT3562STA.dat" in /etc/Wireless/RT3562STA/RT3562STA.dat.
            
-Configuration File : RT2860STA.dat
+Configuration File : RT3562STA.dat
 ---------------------------------------
-# Copy this file to /etc/Wireless/RT2860STA/RT2860STA.dat
+# Copy this file to /etc/Wireless/RT3562STA/RT3562STA.dat
 # This file is a binary file and will be read on loading rt.o module.
 #
 # Use "vi -b rt61sta.dat" to modify settings according to your need.
@@ -182,7 +182,7 @@ CarrierDetect=0
 								(AC_BK, AC_BE, AC_VI, AC_VO)		
 	
 	All WMM parameters do not support iwpriv command but ．WmmCapable・・, 
-	please store all parameter to RT2860STA.dat, and restart driver. 	
+	please store all parameter to RT3562STA.dat, and restart driver. 	
 
 -----------------------------------------------
 syntax is 'Param'='Value' and describes below. 
@@ -482,12 +482,12 @@ syntax is 'Param'='Value' and describes below.
 
 MORE INFORMATION
 =================================================================================
-If you want for rt2860 driver to auto-load at boot time:
-A) choose wlan0 for first RT2860 WLAN card, ra1 for second RT2860 WLAN card, etc.
+If you want for rt3562 driver to auto-load at boot time:
+A) choose wlan0 for first RT3562 WLAN card, ra1 for second RT3562 WLAN card, etc.
    
 B) create(edit) 'ifcfg-wlan0' file in /etc/sysconfig/network-scripts/,      
    edit( or add the line) in /etc/modules.conf:
-       alias wlan0 rt2860sta
+       alias wlan0 rt3562sta
    
 C) edit(create) the file /etc/sysconfig/network-scripts/ifcfg-wlan0  
    DEVICE='wlan0'

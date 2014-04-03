@@ -32,7 +32,7 @@ wsc_ssid				{0~z, 1~32 ascii characters}
 						::Set WPS AP SSID
 
 wsc_start				NULL
-						::Trigger RT2860 STA driver to do WPS process
+						::Trigger RT3562 STA driver to do WPS process
 
 wsc_stop				NULL
 						::Stop WPS process
@@ -432,7 +432,7 @@ The following are our support in standard configuration - iwconfig
 -------------------------------------------------------------------------------------------------------
 iwconfig wlan0 essid {NN|on|off}			; set essid
 iwconfig wlan0 mode {managed|ad-hoc|...}  ; set wireless mode
->> rt2860sta driver support monitor mode with linux kernel > 2.4.20.
+>> rt3562sta driver support monitor mode with linux kernel > 2.4.20.
 >> Note: For using monitor mode => if mesh interface is ON, please down the mesh interface first.
 iwconfig wlan0 freq N.NNNN[k|M|G]]		; set frequency
 iwconfig wlan0 channel N					; set channel
