@@ -1388,7 +1388,7 @@ VOID	NICInitAsicFromEEPROM(
 			UINT32 FormalVersion;
 
 			FormalVersion = ((pAd->EepromVersion & 0x0f) << 8) + (pAd->EepromVersion >> 8);
-			printk("FormalVersion=0x%x, pAd->EepromVersion=0x%x!\n", FormalVersion, pAd->EepromVersion);
+			printk("FormalVersion=0x%x, pAd->EepromVersion=0x%lx!\n", FormalVersion, pAd->EepromVersion);
 			if (FormalVersion >= 0x0201)
 			{
 				WM_COEX_SET_FLAG(pAd, fWM_GPIO4_ACTIVE_HIGH);

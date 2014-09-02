@@ -44,7 +44,6 @@ MODULE_PARM (mac, "s");
 module_param (mac, charp, 0);
 #endif
 MODULE_PARM_DESC (mac, "rt28xx: wireless mac addr");
-MODULE_LICENSE("GPL");
 
 #ifdef OS_ABL_SUPPORT
 
@@ -116,7 +115,6 @@ int MainVirtualIF_close(IN struct net_device *net_dev)
 #ifdef CONFIG_STA_SUPPORT
 	IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 	{
-		BOOLEAN 		Cancelled;
 
 #ifdef PROFILE_STORE
 		WriteDatThread(pAd);
