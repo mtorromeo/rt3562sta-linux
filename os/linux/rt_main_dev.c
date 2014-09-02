@@ -115,7 +115,6 @@ int MainVirtualIF_close(IN struct net_device *net_dev)
 #ifdef CONFIG_STA_SUPPORT
 	IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 	{
-		BOOLEAN 		Cancelled;
 
 #ifdef PROFILE_STORE
 		WriteDatThread(pAd);
