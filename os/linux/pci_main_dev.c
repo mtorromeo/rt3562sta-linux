@@ -91,7 +91,7 @@ MODULE_VERSION(STA_DRIVER_VERSION);
 #endif
 #endif // CONFIG_STA_SUPPORT //
 MODULE_DESCRIPTION("RT3562 Wireless Lan Linux Driver");
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
 
 //
 // Our PCI driver structure
