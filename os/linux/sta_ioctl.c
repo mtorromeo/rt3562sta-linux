@@ -162,10 +162,11 @@ int rt_ioctl_siwfreq(struct net_device *dev,
     if (ChannelSanity(pAd, chan) == TRUE)
     {
 	pAd->CommonCfg.Channel = chan;
-		/*
-			Save the channel on MlmeAux for CntlOidRTBssidProc used.
-		*/
-		pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
+	/*
+		Save the channel on MlmeAux for CntlOidRTBssidProc used.
+	*/
+	pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
+	AsicSwitchChannel(pAd, pAd->CommonCfg.Channel, TRUE);
 	DBGPRINT(RT_DEBUG_ERROR, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ[cmd=0x%x] (Channel=%d)\n", SIOCSIWFREQ, pAd->CommonCfg.Channel));
     }
     else
