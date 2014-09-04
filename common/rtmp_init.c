@@ -1031,12 +1031,7 @@ VOID	NICReadEEPROMParameters(
 	// Reset PhyMode if we don't support 802.11a
 	// Only RFIC_2850 & RFIC_2750 support 802.11a
 	//
-	if ((Antenna.field.RfIcType != RFIC_2850)
-		&& (Antenna.field.RfIcType != RFIC_2750)
-		&& (Antenna.field.RfIcType != RFIC_3052)
-		&& (Antenna.field.RfIcType != RFIC_2853)
-		)
-	{
+#ifndef A_BAND_SUPPORT
 		if ((pAd->CommonCfg.PhyMode == PHY_11ABG_MIXED) || 
 			(pAd->CommonCfg.PhyMode == PHY_11A))
 			pAd->CommonCfg.PhyMode = PHY_11BG_MIXED;
@@ -1049,11 +1044,14 @@ VOID	NICReadEEPROMParameters(
 #endif // DOT11_N_SUPPORT //
 
 		pAd->RFICType = RFIC_24GHZ; // CRDA
-	}
-	else
-	{
+#else //A_BAND_SUPPORT
+#ifdef DOT11_N_SUPPORT
+		pAd->CommonCfg.PhyMode = PHY_11ABGN_MIXED;
+#else
+		pAd->CommonCfg.PhyMode = PHY_11ABG_MIXED;
+#endif
 		pAd->RFICType = RFIC_24GHZ | RFIC_5GHZ; // CRDA
-	}
+#endif //A_BAND_SUPPORT
 	
 	// Read TSSI reference and TSSI boundary for temperature compensation. This is ugly
 	// 0. 11b/g
