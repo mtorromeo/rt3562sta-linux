@@ -1998,9 +1998,6 @@ VOID AsicGetAutoAgcOffset(
 	PTX_POWER_TUNING_ENTRY_STRUCT pTxPowerTuningEntry = NULL;
 	UCHAR RFValue = 0;
 #endif // RTMP_INTERNAL_TX_ALC //
-#if defined(RT3090) || defined(RT3572) || defined(RT3390) || defined(RT3593)
-    unsigned long flags;
-#endif // RT3090 || RT3572 || RT3390 || RT3593 //
 
 	BbpR49.byte = 0;
 
@@ -3858,7 +3855,6 @@ VOID AsicRemoveSharedKeyEntry(
 	DBGPRINT(RT_DEBUG_TRACE,("Write: SHARED_KEY_MODE_BASE at this Bss[%d] = 0x%x \n", BssIndex, csr1.word));
 	RTMP_IO_WRITE32(pAd, SHARED_KEY_MODE_BASE+4*(BssIndex/2), csr1.word);
 	ASSERT(BssIndex < 4);
-	ASSERT(KeyIdx < 4);
 
 }
 

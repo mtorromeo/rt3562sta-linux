@@ -365,7 +365,7 @@ static INT rt2860_probe(
 		goto err_out_iounmap;
 	// Here are the RTMP_ADAPTER structure with pci-bus specific parameters.
 	pAd->CSRBaseAddress = (PUCHAR)csr_addr;
-	DBGPRINT(RT_DEBUG_ERROR, ("pAd->CSRBaseAddress =0x%lx, csr_addr=0x%lx!\n", (ULONG)pAd->CSRBaseAddress, csr_addr));
+	DBGPRINT(RT_DEBUG_TRACE, ("pAd->CSRBaseAddress =0x%lx, csr_addr=0x%lx!\n", (ULONG)pAd->CSRBaseAddress, csr_addr));
 		
 	RTMPInitPCIeDevice(pci_dev, pAd);
 	

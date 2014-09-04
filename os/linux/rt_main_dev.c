@@ -295,7 +295,7 @@ int rt28xx_close(IN PNET_DEV dev)
 #ifdef CREDENTIAL_STORE
 		if (pAd->IndicateMediaState == NdisMediaStateConnected)
 		{	
-			printk("ralink testStoreConnectInfo \n");
+			DBGPRINT(RT_DEBUG_TRACE,("ralink testStoreConnectInfo \n"));
 			StoreConnectInfo(pAd);
 		}
 		else
@@ -565,7 +565,7 @@ int rt28xx_open(IN PNET_DEV dev)
 	{
 	UINT32 reg = 0;
 	RTMP_IO_READ32(pAd, 0x1300, &reg);  // clear garbage interrupts
-	printk("0x1300 = %08x\n", reg);
+// 	printk("0x1300 = %08x\n", reg);
 	}
 
 	{
@@ -992,7 +992,7 @@ BOOLEAN RtmpPhyNetDevExit(
 	// Unregister network device
 	if (net_dev != NULL)
 	{
-		printk("RtmpOSNetDevDetach(): RtmpOSNetDeviceDetach(), dev->name=%s!\n", net_dev->name);
+		DBGPRINT(RT_DEBUG_WARN, ("RtmpOSNetDevDetach(): RtmpOSNetDeviceDetach(), dev->name=%s!\n", net_dev->name));
 		RtmpOSNetDevDetach(net_dev);
 	}
 

@@ -205,7 +205,7 @@ int rt28xx_init(
 	RecoverConnectInfo(pAd);
 #endif /* CREDENTIAL_STORE */
 
-	DBGPRINT(RT_DEBUG_OFF, ("1. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("1. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
 		DBGPRINT_ERR(("RTMPReadParametersHook failed, Status[=0x%08x]\n",Status));
@@ -234,14 +234,14 @@ int rt28xx_init(
 	// if (Status != NDIS_STATUS_SUCCESS)
 	//    break;
 
-	DBGPRINT(RT_DEBUG_OFF, ("2. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("2. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 
 	// We should read EEPROM for all cases.  rt2860b
 	NICReadEEPROMParameters(pAd, (PUCHAR)pDefaultMac);	
 #ifdef CONFIG_STA_SUPPORT
 #endif // CONFIG_STA_SUPPORT //
 
-	DBGPRINT(RT_DEBUG_OFF, ("3. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
+	DBGPRINT(RT_DEBUG_TRACE, ("3. Phy Mode = %d\n", pAd->CommonCfg.PhyMode));
 
 	NICInitAsicFromEEPROM(pAd); //rt2860b
 	
@@ -269,7 +269,7 @@ int rt28xx_init(
 	}
 
 #ifdef DOT11_N_SUPPORT
-	DBGPRINT(RT_DEBUG_OFF, ("MCS Set = %02x %02x %02x %02x %02x\n", pAd->CommonCfg.HtCapability.MCSSet[0],
+	DBGPRINT(RT_DEBUG_TRACE, ("MCS Set = %02x %02x %02x %02x %02x\n", pAd->CommonCfg.HtCapability.MCSSet[0],
            pAd->CommonCfg.HtCapability.MCSSet[1], pAd->CommonCfg.HtCapability.MCSSet[2],
            pAd->CommonCfg.HtCapability.MCSSet[3], pAd->CommonCfg.HtCapability.MCSSet[4]));
 #endif // DOT11_N_SUPPORT //
@@ -342,7 +342,7 @@ int rt28xx_init(
 
 
 
-	DBGPRINT_S(Status, ("<==== rt28xx_init, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<==== rt28xx_init, Status=%x\n", Status));
 
 	return TRUE;
 

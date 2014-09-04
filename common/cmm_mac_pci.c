@@ -284,7 +284,7 @@ NDIS_STATUS RTMPInitTxRxRingMemory
 	// Initialize Rx Ring and associated buffer memory
 	//
 	NdisZeroMemory(pAd->RxDescRing.AllocVa, pAd->RxDescRing.AllocSize);
-	DBGPRINT(RT_DEBUG_OFF,  ("RX DESC %p  size = %ld\n", 
+	DBGPRINT(RT_DEBUG_TRACE,  ("RX DESC %p  size = %ld\n", 
 					pAd->RxDescRing.AllocVa, pAd->RxDescRing.AllocSize));
 
 	// Save PA & VA for further operation
@@ -416,7 +416,7 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 	IN	PRTMP_ADAPTER	pAd)
 {
 	NDIS_STATUS		Status = NDIS_STATUS_SUCCESS;
-	INT			num;
+	INT			num, index=0;
 	ULONG			ErrorValue = 0;
 //	PRTMP_REORDERBUF	pReorderBuf;
 
@@ -530,7 +530,7 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 			ErrorValue);
 	}
 
-	DBGPRINT_S(Status, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
 	return Status;
 }
 
@@ -766,8 +766,7 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 		NdisZeroMemory(pAd->RxDescRing.AllocVa, pAd->RxDescRing.AllocSize);
 
 
-		DBGPRINT(RT_DEBUG_OFF, 
-					("RX DESC %p  size = %ld\n", pAd->RxDescRing.AllocVa, pAd->RxDescRing.AllocSize));
+		DBGPRINT(RT_DEBUG_TRACE, ("RX DESC %p  size = %ld\n", pAd->RxDescRing.AllocVa, pAd->RxDescRing.AllocSize));
 
 		// Save PA & VA for further operation
 		RingBasePaHigh = RTMP_GetPhysicalAddressHigh(pAd->RxDescRing.AllocPa);
@@ -886,7 +885,7 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(
 		DBGPRINT(RT_DEBUG_TRACE, ("<-- NICInitTxRxRingAndBacklogQueue\n"));
 	}
 
-	DBGPRINT_S(Status, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status));
 	return Status;
 }
 

@@ -611,10 +611,10 @@ extern ULONG		RTDebugLevel;
 
 #define DBGPRINT_RAW(Level, Fmt)    \
 do{                                   \
-/*    if (Level <= RTDebugLevel)      \
+    if (Level <= RTDebugLevel)      \
     {                               \
         printk Fmt;               \
-    }*/                               \
+    }                               \
 }while(0)
 
 #define DBGPRINT(Level, Fmt)    DBGPRINT_RAW(Level, Fmt)
