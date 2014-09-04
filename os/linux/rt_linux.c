@@ -479,15 +479,9 @@ PNDIS_PACKET duplicate_pkt(
 		MEM_DBG_PKT_ALLOC_INC(pAd);
 
 		skb_reserve(skb, 2);				
-#ifdef NET_SKBUFF_DATA_USES_OFFSET
-		NdisMoveMemory(skb->data+skb->tail, pHeader802_3, HdrLen); //
+		NdisMoveMemory(GET_OS_PKT_DATATAIL(skb), pHeader802_3, HdrLen);
 		skb_put(skb, HdrLen);
-		NdisMoveMemory(skb->data+skb->tail, pData, DataSize); //
-#else
-		NdisMoveMemory(skb->tail, pHeader802_3, HdrLen); //
-		skb_put(skb, HdrLen);
-		NdisMoveMemory(skb->tail, pData, DataSize); //
-#endif
+		NdisMoveMemory(GET_OS_PKT_DATATAIL(skb), pData, DataSize);
 		skb_put(skb, DataSize);
 		skb->dev = get_netdev_from_bssid(pAd, FromWhichBSSID);
 		pPacket = OSPKT_TO_RTPKT(skb);
@@ -637,8 +631,8 @@ PNDIS_PACKET ClonePacket(
     	pClonedPkt->dev = pRxPkt->dev;
     	pClonedPkt->data = pData;
     	pClonedPkt->len = DataSize;
-    	pClonedPkt->tail = pClonedPkt->data + pClonedPkt->len;
-		ASSERT(DataSize < 1530);
+	SET_OS_PKT_DATATAIL(pClonedPkt, pClonedPkt->data, pClonedPkt->len);
+	ASSERT(DataSize < 1530);
 	}
 	return pClonedPkt;
 }
@@ -680,11 +674,7 @@ void wlan_802_11_to_802_3_packet(
 	pOSPkt->dev = get_netdev_from_bssid(pAd, FromWhichBSSID); 
 	pOSPkt->data = pRxBlk->pData;
 	pOSPkt->len = pRxBlk->DataSize;
-#ifdef NET_SKBUFF_DATA_USES_OFFSET
-	pOSPkt->tail = (pOSPkt->data-pOSPkt->head)+pOSPkt->len;
-#else
-	pOSPkt->tail = pOSPkt->data + pOSPkt->len;
-#endif
+	SET_OS_PKT_DATATAIL(pOSPkt, pOSPkt->data, pOSPkt->len);
 
 	//
 	// copy 802.3 header
