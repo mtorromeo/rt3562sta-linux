@@ -960,7 +960,7 @@ VOID RTMPHwCoexSwitch(
 		WMDisable = 0x0c;
 	}
 
-	DBGPRINT(RT_DEBUG_TRACE, ("%s():sw=%d,coFlags=0x%lx,LedMode=0x%x,LedCfg=0x%x,WMEnable=0x%x!\n", 
+	DBGPRINT(RT_DEBUG_TRACE, ("%s():sw=%d,coFlags=0x%lx,LedMode=0x%x,LedCfg=0x%lx,WMEnable=0x%x!\n", 
 				__FUNCTION__, switch_mode, pAd->coexFlags, pAd->LedCntl.field.LedMode, MacValue, WMEnable));
 	
 	/*

@@ -220,7 +220,7 @@ NDIS_STATUS	RTMPAllocAdapterBlock(
 			break;
 		}
 		pAd->BeaconBuf = pBeaconBuf;
-		DBGPRINT(RT_DEBUG_OFF, ("\n\n=== pAd = %p, size = %d ===\n\n", pAd, (UINT32)sizeof(RTMP_ADAPTER)));
+		DBGPRINT(RT_DEBUG_LOUD, ("=== pAd = %p, size = %d ===\n", pAd, (UINT32)sizeof(RTMP_ADAPTER)));
 
 
 		// Init spin locks
@@ -274,7 +274,7 @@ NDIS_STATUS	RTMPAllocAdapterBlock(
 			pAd->ProbeRespIE[index].pIe = NULL;
 	}	
 
-	DBGPRINT_S(Status, ("<-- RTMPAllocAdapterBlock, Status=%x\n", Status));
+	DBGPRINT(RT_DEBUG_TRACE, ("<-- RTMPAllocAdapterBlock, Status=%x\n", Status));
 	return Status;
 }
 
@@ -1031,12 +1031,7 @@ VOID	NICReadEEPROMParameters(
 	// Reset PhyMode if we don't support 802.11a
 	// Only RFIC_2850 & RFIC_2750 support 802.11a
 	//
-	if ((Antenna.field.RfIcType != RFIC_2850)
-		&& (Antenna.field.RfIcType != RFIC_2750)
-		&& (Antenna.field.RfIcType != RFIC_3052)
-		&& (Antenna.field.RfIcType != RFIC_2853)
-		)
-	{
+#ifndef A_BAND_SUPPORT
 		if ((pAd->CommonCfg.PhyMode == PHY_11ABG_MIXED) || 
 			(pAd->CommonCfg.PhyMode == PHY_11A))
 			pAd->CommonCfg.PhyMode = PHY_11BG_MIXED;
@@ -1049,11 +1044,14 @@ VOID	NICReadEEPROMParameters(
 #endif // DOT11_N_SUPPORT //
 
 		pAd->RFICType = RFIC_24GHZ; // CRDA
-	}
-	else
-	{
+#else //A_BAND_SUPPORT
+#ifdef DOT11_N_SUPPORT
+		pAd->CommonCfg.PhyMode = PHY_11ABGN_MIXED;
+#else
+		pAd->CommonCfg.PhyMode = PHY_11ABG_MIXED;
+#endif
 		pAd->RFICType = RFIC_24GHZ | RFIC_5GHZ; // CRDA
-	}
+#endif //A_BAND_SUPPORT
 	
 	// Read TSSI reference and TSSI boundary for temperature compensation. This is ugly
 	// 0. 11b/g
@@ -1388,7 +1386,7 @@ VOID	NICInitAsicFromEEPROM(
 			UINT32 FormalVersion;
 
 			FormalVersion = ((pAd->EepromVersion & 0x0f) << 8) + (pAd->EepromVersion >> 8);
-			printk("FormalVersion=0x%x, pAd->EepromVersion=0x%x!\n", FormalVersion, pAd->EepromVersion);
+			DBGPRINT(RT_DEBUG_TRACE, ("FormalVersion=0x%x, pAd->EepromVersion=0x%lx!\n", FormalVersion, pAd->EepromVersion));
 			if (FormalVersion >= 0x0201)
 			{
 				WM_COEX_SET_FLAG(pAd, fWM_GPIO4_ACTIVE_HIGH);
@@ -3487,7 +3485,7 @@ VOID	RTMPSetTimer(
 		pAd = (RTMP_ADAPTER *)pTimer->pAd;
 		if (RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_HALT_IN_PROGRESS | fRTMP_ADAPTER_NIC_NOT_EXIST))
 		{
-			DBGPRINT_ERR(("RTMPSetTimer failed, Halt in Progress!\n"));
+			DBGPRINT(RT_DEBUG_WARN, ("RTMPSetTimer failed, Halt in Progress!\n"));
 			return;
 		}
 		
@@ -3506,7 +3504,7 @@ VOID	RTMPSetTimer(
 	}
 	else
 	{
-		DBGPRINT_ERR(("RTMPSetTimer failed, Timer hasn't been initialize!\n"));
+		DBGPRINT(RT_DEBUG_WARN,("RTMPSetTimer failed, Timer hasn't been initialize!\n"));
 	}
 }
 
@@ -3599,7 +3597,7 @@ VOID	RTMPCancelTimer(
 	}
 	else
 	{
-		DBGPRINT_ERR(("RTMPCancelTimer failed, Timer hasn't been initialize!\n"));
+		DBGPRINT(RT_DEBUG_WARN,("RTMPCancelTimer failed, Timer hasn't been initialize!\n"));
 	}
 }
 

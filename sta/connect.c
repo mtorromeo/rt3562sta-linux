@@ -2313,7 +2313,7 @@ VOID LinkDown(
 	{
 		// Use DAC1 as default
 		ByteValue |= 0x8;
-		printk("%s(shiang): Use DAC1 as default, BBP_R1=0x%x\n", __FUNCTION__, ByteValue);
+		DBGPRINT(RT_DEBUG_TRACE,("%s(shiang): Use DAC1 as default, BBP_R1=0x%x\n", __FUNCTION__, ByteValue));
 	}
 	else
 	{
@@ -2394,7 +2394,7 @@ VOID LinkDown(
 		ByteValue &= (~0x03);
 		ByteValue |= 0x01;
 		RTMP_BBP_IO_WRITE8_BY_REG_ID(pAd, BBP_R3, ByteValue);
-		printk("%s(shiang): change BBP_R3=0x%x\n", __FUNCTION__, ByteValue);
+		DBGPRINT(RT_DEBUG_TRACE,("%s(shiang): change BBP_R3=0x%x\n", __FUNCTION__, ByteValue));
 	}
 
 }
@@ -2922,8 +2922,7 @@ VOID InitChannelRelatedValue(
 				Value |= (0x0);
 			}
 		}
-		printk("%s(shiang):IS_WM_ON(pAd)=%d, Channel=%d, set BBP_R3=0x%x!\n", 
-				__FUNCTION__, IS_WM_ON(pAd), pAd->CommonCfg.Channel, Value);
+		DBGPRINT(RT_DEBUG_TRACE, ("%s(shiang):IS_WM_ON(pAd)=%d, Channel=%d, set BBP_R3=0x%x!\n", __FUNCTION__, IS_WM_ON(pAd), pAd->CommonCfg.Channel, Value));
 	}
 	else
 	{

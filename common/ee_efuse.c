@@ -1709,14 +1709,14 @@ INT eFuse_init(
 	IN PRTMP_ADAPTER pAd)
 {
 	UINT	EfuseFreeBlock=0;
-	DBGPRINT(RT_DEBUG_ERROR, ("NVM is Efuse and its size =%x[%x-%x] \n",EFUSE_USAGE_MAP_SIZE,EFUSE_USAGE_MAP_START,EFUSE_USAGE_MAP_END));
+	DBGPRINT(RT_DEBUG_TRACE, ("NVM is Efuse and its size =%x[%x-%x] \n",EFUSE_USAGE_MAP_SIZE,EFUSE_USAGE_MAP_START,EFUSE_USAGE_MAP_END));
 	eFuseGetFreeBlockCount(pAd, &EfuseFreeBlock);
 	//If the used block of efuse is less than 5. We assume the default value
 	// of this efuse is empty and change to the buffer mode in odrder to 
 	//bring up interfaces successfully.
 	if(EfuseFreeBlock > (EFUSE_USAGE_MAP_SIZE-5))
 	{
-		DBGPRINT(RT_DEBUG_ERROR, ("NVM is Efuse and the information is too less to bring up interface. Force to use EEPROM Buffer Mode\n"));
+		DBGPRINT(RT_DEBUG_TRACE, ("NVM is Efuse and the information is too less to bring up interface. Force to use EEPROM Buffer Mode\n"));
 		pAd->bFroceEEPROMBuffer = TRUE;
 		eFuseLoadEEPROM(pAd);
 	}

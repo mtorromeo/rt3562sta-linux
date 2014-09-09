@@ -865,8 +865,8 @@ VOID MlmeResetRalinkCounters(
 
 	/* for performace enchanement */
 	NdisZeroMemory(&pAd->RalinkCounters,
-					(UINT32)&pAd->RalinkCounters.OneSecEnd -
-					(UINT32)&pAd->RalinkCounters.OneSecStart);
+					&pAd->RalinkCounters.OneSecEnd -
+					&pAd->RalinkCounters.OneSecStart);
 
 	return;
 }
@@ -3735,7 +3735,7 @@ VOID MlmeDynamicTxRateSwitchingAdapt(
 		TX_LINK_CFG_STRUC	TxLinkCfg;
 		ULONG				TxOpThres;
 
-		pTempTxRate = (PRTMP_TX_RATE_SWITCH)(&pTable[(tmpTxRate + 1)*10]);
+		pTempTxRate = (PRTMP_TX_RATE_SWITCH_3S)(&pTable[(tmpTxRate + 1)*10]);
 		RTMP_IO_READ32(pAd, TX_LINK_CFG, &TxLinkCfg.word);
 
 		if ((pAd->RalinkCounters.OneSecReceivedByteCount > (pAd->RalinkCounters.OneSecTransmittedByteCount * 5)) &&
@@ -4075,7 +4075,7 @@ VOID StaQuickResponeForRateUpExecAdapt(
 	pCurrTxRate = (PRTMP_TX_RATE_SWITCH_3S) &pTable[(CurrRateIdx+1)*10];
 
 #ifdef DOT11_N_SUPPORT
-	McsDown(pAd, CurrRateIdx, pCurrTxRate, &UpRateIdx, &DownRateIdx);
+	McsDown(pAd, CurrRateIdx, (PRTMP_TX_RATE_SWITCH)pCurrTxRate, &UpRateIdx, &DownRateIdx);
 
 	if ((Rssi > -65) && (pCurrTxRate->Mode >= MODE_HTMIX) && pEntry->perThrdAdj == 1)
 	{
@@ -5654,7 +5654,7 @@ ULONG BssTableSetEntry(
 					BssEntrySet(pAd, &Tab->BssEntry[Idx], pBssid, Ssid, SsidLen, BssType, BeaconPeriod, CfParm, AtimWin, 
 						CapabilityInfo, SupRate, SupRateLen, ExtRate, ExtRateLen,pHtCapability, pAddHtInfo,HtCapabilityLen, AddHtInfoLen,
 						NewExtChanOffset, ChannelNo, Rssi, TimeStamp, CkipFlag, pEdcaParm, pQosCapability, pQbssLoad, LengthVIE, pVIE);
-                    Tab->BssOverlapNr = (Tab->BssOverlapNr++) % MAX_LEN_OF_BSS_TABLE;
+                    Tab->BssOverlapNr = (Tab->BssOverlapNr+1) % MAX_LEN_OF_BSS_TABLE;
 				}
 				return Idx;
 			}

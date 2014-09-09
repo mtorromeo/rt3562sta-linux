@@ -34,8 +34,8 @@
 extern int rt28xx_close(IN struct net_device *net_dev);
 extern int rt28xx_open(struct net_device *net_dev);
 
-static VOID __devexit rt2860_remove_one(struct pci_dev *pci_dev);
-static INT __devinit rt2860_probe(struct pci_dev *pci_dev, const struct pci_device_id  *ent);
+static VOID rt2860_remove_one(struct pci_dev *pci_dev);
+static INT rt2860_probe(struct pci_dev *pci_dev, const struct pci_device_id  *ent);
 static void __exit rt2860_cleanup_module(void);
 static int __init rt2860_init_module(void);
 
@@ -57,7 +57,7 @@ static int rt2860_resume(struct pci_dev *pci_dev);
 //
 // Ralink PCI device table, include all supported chipsets
 //
-static struct pci_device_id rt2860_pci_tbl[] __devinitdata =
+static struct pci_device_id rt2860_pci_tbl[] =
 {
 #ifdef RT2860
 	{PCI_DEVICE(NIC_PCI_VENDOR_ID, NIC2860_PCI_DEVICE_ID)},		//RT28602.4G
@@ -90,18 +90,19 @@ MODULE_DEVICE_TABLE(pci, rt2860_pci_tbl);
 MODULE_VERSION(STA_DRIVER_VERSION);
 #endif
 #endif // CONFIG_STA_SUPPORT //
-
+MODULE_DESCRIPTION("RT3562 Wireless Lan Linux Driver");
+MODULE_LICENSE("GPL v2");
 
 //
 // Our PCI driver structure
 //
 static struct pci_driver rt2860_driver =
 {
-    name:       "rt2860",
+    name:       "rt3562",
     id_table:   rt2860_pci_tbl,
     probe:      rt2860_probe,
 #if LINUX_VERSION_CODE >= 0x20412
-    remove:     __devexit_p(rt2860_remove_one),
+    remove:     rt2860_remove_one,
 #else
     remove:     __devexit(rt2860_remove_one),
 #endif
@@ -294,7 +295,7 @@ module_exit(rt2860_cleanup_module);
 //
 // PCI device probe & initialization function
 //
-static INT __devinit   rt2860_probe(
+static INT rt2860_probe(
     IN  struct pci_dev              *pci_dev, 
     IN  const struct pci_device_id  *pci_id)
 {
@@ -317,9 +318,9 @@ static INT __devinit   rt2860_probe(
 	}
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,5,0)
-	print_name = pci_dev ? pci_name(pci_dev) : "rt2860";
+	print_name = pci_dev ? pci_name(pci_dev) : "rt3562";
 #else
-	print_name = pci_dev ? pci_dev->slot_name : "rt2860";
+	print_name = pci_dev ? pci_dev->slot_name : "rt3562";
 #endif // LINUX_VERSION_CODE //
 
 	if ((rv = pci_request_regions(pci_dev, print_name)) != 0)
@@ -364,7 +365,7 @@ static INT __devinit   rt2860_probe(
 		goto err_out_iounmap;
 	// Here are the RTMP_ADAPTER structure with pci-bus specific parameters.
 	pAd->CSRBaseAddress = (PUCHAR)csr_addr;
-	DBGPRINT(RT_DEBUG_ERROR, ("pAd->CSRBaseAddress =0x%lx, csr_addr=0x%lx!\n", (ULONG)pAd->CSRBaseAddress, csr_addr));
+	DBGPRINT(RT_DEBUG_TRACE, ("pAd->CSRBaseAddress =0x%lx, csr_addr=0x%lx!\n", (ULONG)pAd->CSRBaseAddress, csr_addr));
 		
 	RTMPInitPCIeDevice(pci_dev, pAd);
 	
@@ -468,7 +469,7 @@ err_out:
 }
 
 
-static VOID __devexit rt2860_remove_one(
+static VOID rt2860_remove_one(
     IN  struct pci_dev  *pci_dev)
 {
 	PNET_DEV	net_dev = pci_get_drvdata(pci_dev);

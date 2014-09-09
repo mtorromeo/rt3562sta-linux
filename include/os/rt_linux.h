@@ -111,10 +111,10 @@
 
 #ifdef CONFIG_STA_SUPPORT
 #ifdef RTMP_MAC_PCI
-#define STA_PROFILE_PATH			"/etc/Wireless/RT2860STA/RT2860STA.dat"
+#define STA_PROFILE_PATH			"/etc/Wireless/RT3562STA/RT3562STA.dat"
 #define STA_DRIVER_VERSION			"2.4.1.1"
 #ifdef MULTIPLE_CARD_SUPPORT
-#define CARD_INFO_PATH			"/etc/Wireless/RT2860STA/RT2860STACard.dat"
+#define CARD_INFO_PATH			"/etc/Wireless/RT3562STA/RT3562STACard.dat"
 #endif // MULTIPLE_CARD_SUPPORT //
 #endif // RTMP_MAC_PCI //
 
@@ -262,8 +262,8 @@ typedef struct file* RTMP_OS_FD;
 
 typedef struct _RTMP_OS_FS_INFO_
 {
-	int				fsuid;
-	int				fsgid;
+	kuid_t				fsuid;
+	kgid_t				fsgid;
 	mm_segment_t	fs;
 }RTMP_OS_FS_INFO;
 
@@ -944,8 +944,14 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 		
 #define GET_OS_PKT_DATATAIL(_pkt) \
 		(RTPKT_TO_OSPKT(_pkt)->tail)
+
+#ifdef NET_SKBUFF_DATA_USES_OFFSET
+#define SET_OS_PKT_DATATAIL(_pkt, _start, _len) \
+		((RTPKT_TO_OSPKT(_pkt))->tail) = (PUCHAR)(RTPKT_TO_OSPKT(_pkt)->data-(RTPKT_TO_OSPKT(_pkt)->head) + (_len))
+#else
 #define SET_OS_PKT_DATATAIL(_pkt, _start, _len)	\
 		((RTPKT_TO_OSPKT(_pkt))->tail) = (PUCHAR)((_start) + (_len))
+#endif
 		
 #define GET_OS_PKT_HEAD(_pkt) \
 		(RTPKT_TO_OSPKT(_pkt)->head)

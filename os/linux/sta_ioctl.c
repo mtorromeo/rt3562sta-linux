@@ -162,11 +162,12 @@ int rt_ioctl_siwfreq(struct net_device *dev,
     if (ChannelSanity(pAd, chan) == TRUE)
     {
 	pAd->CommonCfg.Channel = chan;
-		/*
-			Save the channel on MlmeAux for CntlOidRTBssidProc used.
-		*/
-		pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
-	DBGPRINT(RT_DEBUG_ERROR, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ[cmd=0x%x] (Channel=%d)\n", SIOCSIWFREQ, pAd->CommonCfg.Channel));
+	/*
+		Save the channel on MlmeAux for CntlOidRTBssidProc used.
+	*/
+	pAd->MlmeAux.Channel = pAd->CommonCfg.Channel;
+	AsicSwitchChannel(pAd, pAd->CommonCfg.Channel, TRUE);
+	DBGPRINT(RT_DEBUG_TRACE, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ[cmd=0x%x] (Channel=%d)\n", SIOCSIWFREQ, pAd->CommonCfg.Channel));
     }
     else
         return -EINVAL;
@@ -1099,7 +1100,7 @@ int rt_ioctl_giwscan(struct net_device *dev,
 
 	data->length = current_ev - extra;
     pAd->StaCfg.bScanReqIsFromWebUI = FALSE;
-	DBGPRINT(RT_DEBUG_ERROR ,("===>rt_ioctl_giwscan. %d(%d) BSS returned, data->length = %d\n",i , pAd->ScanTab.BssNr, data->length));
+	DBGPRINT(RT_DEBUG_TRACE ,("===>rt_ioctl_giwscan. %d(%d) BSS returned, data->length = %d\n",i , pAd->ScanTab.BssNr, data->length));
 	return 0;
 }
 #endif
@@ -1812,7 +1813,7 @@ rt_private_show(struct net_device *dev, struct iw_request_info *info,
             wrq->length = strlen(extra) + 1; // 1: size of '\0'
             break;
         case SHOW_DRVIER_VERION:
-            sprintf(extra, "Driver version-%s, %s %s\n", STA_DRIVER_VERSION, __DATE__, __TIME__ );
+            sprintf(extra, "Driver version-%s\n", STA_DRIVER_VERSION);
             wrq->length = strlen(extra) + 1; // 1: size of '\0'
             break;
 #ifdef DOT11_N_SUPPORT
