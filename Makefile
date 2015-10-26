@@ -120,7 +120,7 @@ CROSS_COMPILE = /opt/buildroot-gcc342/bin/mipsel-linux-uclibc-
 endif
 
 ifeq ($(PLATFORM),FREESCALE8377)
-LINUX_SRC = /opt/ltib-mpc8377_rds-20090309/rpm/BUILD/linux-2.6.25 
+LINUX_SRC = /opt/ltib-mpc8377_rds-20090309/rpm/BUILD/linux-2.6.25
 CROSS_COMPILE = /opt/freescale/usr/local/gcc-4.2.187-eglibc-2.5.187/powerpc-linux-gnu/bin/powerpc-linux-gnu-
 endif
 
@@ -140,12 +140,9 @@ CROSS_COMPILE = mips-wrs-linux-gnu-
 endif
 
 ifeq ($(PLATFORM),PC)
-# Linux 2.6
 LINUX_SRC = /lib/modules/$(shell uname -r)/build
-# Linux 2.4 Change to your local setting
-#LINUX_SRC = /usr/src/linux-2.4
 LINUX_SRC_MODULE = /lib/modules/$(shell uname -r)/kernel/drivers/net/wireless/
-CROSS_COMPILE = 
+CROSS_COMPILE =
 endif
 
 ifeq ($(PLATFORM),IXP)
@@ -154,9 +151,6 @@ CROSS_COMPILE = arm-linux-
 endif
 
 ifeq ($(PLATFORM),INF_TWINPASS)
-# Linux 2.6
-#LINUX_SRC = /lib/modules/$(shell uname -r)/build
-# Linux 2.4 Change to your local setting
 LINUX_SRC = /project/stable/twinpass/release/2.0.1/source/kernel/opensource/linux-2.4.31/
 CROSS_COMPILE = mips-linux-
 endif
@@ -179,17 +173,12 @@ CROSS_COMPILE = /home/public/lantiq/VR9/UGW-4.2/staging_dir/toolchain-mips_gcc-3
 endif
 
 ifeq ($(PLATFORM),BRCM_6358)
-LINUX_SRC = 
-CROSS_COMPILE = 
+LINUX_SRC =
+CROSS_COMPILE =
 endif
 
 ifeq ($(PLATFORM),INF_AMAZON_SE)
-# Linux 2.6
-#LINUX_SRC = /lib/modules/$(shell uname -r)/build
-# Linux 2.4 Change to your local setting
 LINUX_SRC = /backup/ifx/3.6.2.2/source/kernel/opensource/linux-2.4.31
-#CROSS_COMPILE = mips-linux-
-#LINUX_SRC = /project/Infineon/3.6.2.2/source/kernel/opensource/linux-2.4.31
 CROSS_COMPILE = /opt/uclibc-toolchain/ifx-lxdb-1-2-3-external/gcc-3.3.6/toolchain-mips/R0208V35/mips-linux-uclibc/bin/
 endif
 
@@ -230,7 +219,7 @@ LINUX_SRC = /home/john/MTK/BDP_Linux/linux-2.6.27
 CROSS_COMPILE = armv6z-mediatek-linux-gnueabi-
 endif
 
-ifeq ($(PLATFORM),NXP_TV550) 
+ifeq ($(PLATFORM),NXP_TV550)
 LINUX_SRC = /data/tv550/kernel/linux-2.6.28.9
 LINUX_SRC_MODULE = /data/tv550/kernel/linux-2.6.28.9/drivers/net/wireless
 CROSS_COMPILE = /opt/embeddedalley/nxp_tv550/bin/mipsel-linux-
@@ -252,7 +241,7 @@ ifeq ($(TARGET),THREADX)
 all: $(TARGET)
 else
 all: build_tools $(TARGET)
-endif 
+endif
 
 
 
@@ -272,47 +261,6 @@ THREADX:
 	$(MAKE) -C $(RT28xx_DIR)/os/Threadx -f $(RT28xx_DIR)/os/ThreadX/Makefile
 
 LINUX:
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
-
-ifeq ($(OSABL),YES)
-	cp -f os/linux/Makefile.4.util $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-endif
-
-	cp -f os/linux/Makefile.4 $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-
-ifeq ($(OSABL),YES)
-	cp -f os/linux/Makefile.4.netif $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-endif
-
-ifeq ($(RT28xx_MODE),AP)
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)ap.o /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)ap.o /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)ap.o /tftpboot
-endif
-ifeq ($(PLATFORM),INF_AMAZON_SE)
-#	cp -f /tftpboot/rt2870ap.o /backup/ifx/build/root_filesystem/lib/modules/2.4.31-Amazon_SE-3.6.2.2-R0416_Ralink/kernel/drivers/net
-endif
-else	
-ifeq ($(RT28xx_MODE),APSTA)
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)apsta.o /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)apsta.o /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)apsta.o /tftpboot
-endif
-else
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)sta.o /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)sta.o /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)sta.o /tftpboot
-endif
-endif	
-endif	
-else
-
 ifeq ($(OSABL),YES)
 	cp -f os/linux/Makefile.6.util $(RT28xx_DIR)/os/linux/Makefile
 	$(MAKE) -C $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
@@ -335,28 +283,8 @@ ifeq ($(OSABL),YES)
 endif
 
 ifeq ($(RT28xx_MODE),AP)
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)ap.ko /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)ap.ko /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)ap.ko /tftpboot
-endif
 	rm -f os/linux/rt$(CHIPSET)ap.ko.lzma
 	/root/bin/lzma e os/linux/rt$(CHIPSET)ap.ko os/linux/rt$(CHIPSET)ap.ko.lzma
-else	
-ifeq ($(RT28xx_MODE),APSTA)
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)apsta.ko /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)apsta.ko /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)apsta.ko /tftpboot
-endif
-else
-#	cp -f $(RT28xx_DIR)/os/linux/rt$(CHIPSET)sta.ko /tftpboot
-ifeq ($(OSABL),YES)
-#	cp -f $(RT28xx_DIR)/os/linux/rtutil$(CHIPSET)sta.ko /tftpboot
-#	cp -f $(RT28xx_DIR)/os/linux/rtnet$(CHIPSET)sta.ko /tftpboot
-endif
-endif
-endif
 endif
 
 
@@ -384,71 +312,44 @@ endif
 ifeq ($(RT28xx_MODE),STA)
 	cp $(RT28xx_DIR)/os/linux/Makefile.DPD $(RTMP_SRC_DIR)/os/linux/.
 	cp $(RT28xx_DIR)/os/linux/Makefile.DPO $(RTMP_SRC_DIR)/os/linux/.
-endif	
+endif
 
 clean:
 ifeq ($(TARGET), LINUX)
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
 	cp -f os/linux/Makefile.4 os/linux/Makefile
-else
-	cp -f os/linux/Makefile.6 os/linux/Makefile
-endif
 	$(MAKE) -C os/linux clean
 	rm -rf os/linux/Makefile
-endif	
+endif
 ifeq ($(TARGET), UCOS)
 	$(MAKE) -C os/ucos clean MODE=$(RT28xx_MODE)
 endif
 
 uninstall:
 ifeq ($(TARGET), LINUX)
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
-	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.4 uninstall
-else
 	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.6 uninstall
-endif
 endif
 
 install:
 ifeq ($(TARGET), LINUX)
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
-	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.4 install
-else
 	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.6 install
-endif
 endif
 
 libwapi:
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
-	cp -f os/linux/Makefile.libwapi.4 $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-else
-	cp -f os/linux/Makefile.libwapi.6 $(RT28xx_DIR)/os/linux/Makefile	
-	$(MAKE) -C  $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules	
-endif	
+	cp -f os/linux/Makefile.libwapi.6 $(RT28xx_DIR)/os/linux/Makefile
+	$(MAKE) -C  $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
 
 osabl:
 ifeq ($(OSABL),YES)
-ifneq (,$(findstring 2.4,$(LINUX_SRC)))
-	cp -f os/linux/Makefile.4.util $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-	cp -f os/linux/Makefile.4.netif $(RT28xx_DIR)/os/linux/Makefile
-	$(MAKE) -C $(RT28xx_DIR)/os/linux/
-else
 	cp -f os/linux/Makefile.6.util $(RT28xx_DIR)/os/linux/Makefile
 	$(MAKE) -C $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
 	cp -f os/linux/Makefile.6.netif $(RT28xx_DIR)/os/linux/Makefile
 	$(MAKE) -C $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux modules
 endif
-endif
 
 libautoprovision:
 	rm -f os/linux/lib.a
-	cp -f os/linux/Makefile.libautoprovision.6 $(RT28xx_DIR)/os/linux/Makefile	
+	cp -f os/linux/Makefile.libautoprovision.6 $(RT28xx_DIR)/os/linux/Makefile
 	$(MAKE) -C  $(LINUX_SRC) SUBDIRS=$(RT28xx_DIR)/os/linux
 
 # Declare the contents of the .PHONY variable as phony.  We keep that information in a variable
 .PHONY: $(PHONY)
-
-
-
